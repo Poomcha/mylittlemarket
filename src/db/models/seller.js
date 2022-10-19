@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      telegram: { type: DataTypes.JSON },
+      telegram: { type: DataTypes.JSON, allowNull: false },
+      name: { type: DataTypes.STRING, allowNull: false },
     },
     {
       sequelize,

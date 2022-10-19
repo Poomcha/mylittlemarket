@@ -4,7 +4,7 @@ const router = express.Router();
 const storesCtrl = require('../controllers/store');
 
 router.get('/:storeId', storesCtrl.getStore);
-router.post('/:storeId', storesCtrl.createStore);
+router.post('/', storesCtrl.createStore);
 router.patch('/:storeId', storesCtrl.patchStore);
 router.delete('/:storeId', dstoresCtrl.eleteStore);
 
