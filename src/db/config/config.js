@@ -1,14 +1,14 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  host: process.env.HOST,
-  port: process.env.PORT,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
   ssl: true,
-  dialect: process.env.DIALECT,
+  dialect: process.env.DB_DIALECT,
   dialectOptions: {
-    ssl: true,
+    // ssl: true,
   },
 };

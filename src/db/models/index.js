@@ -7,7 +7,19 @@ const basename = path.basename(__filename);
 const config = require(__dirname + '/../config/config.js');
 const db = {};
 
-const sequelize = new Sequelize(...config);
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config
+);
+
+// testing database connection.
+// run "npm run db_test". 
+// sequelize
+//   .authenticate()
+//   .then(() => console.log('Connection has been established successfully'))
+//   .catch((e) => console.log(e));
 
 fs.readdirSync(__dirname)
   .filter((file) => {

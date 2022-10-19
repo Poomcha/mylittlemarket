@@ -3,13 +3,20 @@
   "version": "1.0.0",
   "description": "REST API for MYLITTLEMARKET Telegram' bot.",
   "main": "./src/index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node ./src/index.js",
+    "db_test": "node ./src/db/models/index.js"
+  },
   "keywords": [
     "mylittlemarket"
   ],
   "author": "poomcha",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^6.0.0",
+    "mysql2": "^2.3.3",
     "sequelize": "^6.25.2"
   },
   "devDependencies": {
