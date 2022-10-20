@@ -1,6 +1,7 @@
 const app = require('./app');
 const http = require('http');
 require('dotenv').config();
+const bot = require('./bot/index');
 
 /**
  * Retourne un port valide.
@@ -20,7 +21,7 @@ const normalizePort = (val) => {
 };
 
 // Configuration du port :
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.API_PORT || '3001');
 app.set('port', port);
 
 /**
@@ -56,5 +57,10 @@ server.on('listening', () => {
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
   console.log('Listening on ' + bind);
 });
+
+bot
+  .launch()
+  .then(() => console.log("mlm' alive!"))
+  .catch((err) => console.log(err));
 
 server.listen(port);

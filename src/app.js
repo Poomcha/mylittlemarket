@@ -45,3 +45,5 @@ fs.readdirSync(routesPath)
 Object.keys(routesObj).forEach((route) =>
   app.use(`/${route}`, routesObj[route])
 );
+
+module.exports = app;

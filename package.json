@@ -5,7 +5,9 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "db_test": "node ./src/db/models/index.js"
+    "db_test": "node ./src/db/models/index.js",
+    "bot_test": "node ./src/bot/index.js",
+    "dev": "npx nodemon ./src/index.js"
   },
   "keywords": [
     "mylittlemarket"
@@ -17,9 +19,11 @@
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.25.2"
+    "sequelize": "^6.25.2",
+    "telegraf": "^4.10.0"
   },
   "devDependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
   }
 }
