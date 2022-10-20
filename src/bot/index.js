@@ -3,7 +3,7 @@ const { Telegraf } = require('telegraf');
 const clientUrl = `${process.env.CLIENT_URL}:${process.env.CLIENT_PORT}`;
 
 const bot = new Telegraf(process.env.BOT_TOKEN, {
-  telegram: { testEnv: true },
+  telegram: { testEnv: process.env.BOT_TEST_ENV === 'TEST' },
 });
 
 bot.start(async (ctx) =>

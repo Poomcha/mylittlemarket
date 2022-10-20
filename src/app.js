@@ -15,19 +15,10 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors(corsOptions));
 
-// Middleware.
-const middlewareObj = {};
-const middlewarePath = path.resolve(__dirname, 'api/middlewares');
-fs.readdirSync(middlewarePath)
-  .filter((file) => file.indexOf('.') !== 0 && file.endsWith('.js'))
-  .forEach((file) =>
-    Object.assign(routesObj, {
-      [`${file.slice(0, file.length - 3)}`]: require(path.resolve(
-        middlewarePath,
-        file
-      )),
-    })
-  );
+// Enable WebAppData check everywhere.
+// @see https://core.telegram.org/bots/webapps#validating-data-received-via-the-web-app
+const validateDataMW = require('./api/middlewares/validateDataMW');
+app.use(validateDataMW);
 
 // Routage dynamique.
 const routesObj = {};
