@@ -1,27 +1,25 @@
 import './App.css';
-import { useEffect, useState } from 'react';
 
-const telegram = window.Telegram.WebApp;
-const apiUrl = 'http://localhost:3001/';
-const { initData, initDataUnsafe } = { ...telegram };
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Layout from './components/Layout/Layout';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Home from './pages/Home/Home';
+import Unauthorized from './pages/Unauthorized/Unauthorized';
 
 function App() {
-  const [testFetch, setTestFetch] = useState(0);
-
-  useEffect(() => {
-    fetch(`${apiUrl}`, { headers: { data: `${initData}` } })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, [testFetch]);
-
-  const handleClick = () => {
-    setTestFetch((prev) => (prev += 1));
-  };
 
   return (
-    <div className="App">
-      <button onClick={handleClick}>TEST FETCH !</button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+            </Route>
+          </Route>
+          <Route path="/unauthorized" element={<Unauthorized />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

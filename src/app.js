@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 // Enable WebAppData check everywhere.
 // @see https://core.telegram.org/bots/webapps#validating-data-received-via-the-web-app
 const validateDataMW = require('./api/middlewares/validateDataMW');
-app.use(validateDataMW);
+app.use(express.Router().get('/login'), validateDataMW);
 
 // Routage dynamique.
 const routesObj = {};

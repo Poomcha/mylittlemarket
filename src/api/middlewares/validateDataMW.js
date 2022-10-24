@@ -2,11 +2,13 @@ const { validateData } = require('../utils/utils');
 
 const validateDataMW = (req, res, next) => {
   const data = req.headers.data;
-  if (validateData(data)) {
-    console.log("Data OK!");
-    next();
+  const safeData = validateData(data);
+  if (safeData.safe) {
+    console.log('Data OK!');
+    res.status(200).json({ ...safeData });
   } else {
-    res.status(401).json({ message: '401: Unhautorized' });
+    console.log('Something went wrong...');
+    res.status(401).json();
   }
 };
 

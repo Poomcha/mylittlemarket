@@ -4,7 +4,6 @@ const querystring = require('query-string');
 
 const botToken = process.env.BOT_TOKEN;
 
-const secret = crypto.createHmac('sha256', 'WebAppData').update(botToken);
 
 const parseQueryString = (queryString) => querystring.parse(queryString);
 
@@ -19,14 +18,27 @@ const parseDataCheckString = (queryString) => {
 };
 
 const validateData = (queryString) => {
-  const hash = parseQueryString(queryString).hash;
+  const secret = crypto.createHmac('sha256', 'WebAppData').update(botToken);
+  const parsedQueryString = parseQueryString(queryString);
+  const hash = parsedQueryString.hash;
   const dataCheckString = parseDataCheckString(queryString);
 
   const _hash = crypto
     .createHmac('sha256', secret.digest())
     .update(dataCheckString)
     .digest('hex');
-  return _hash === hash;
+    
+  if (hash === _hash) {
+    return {
+      safe: hash === _hash,
+      auth_date: parsedQueryString.auth_date,
+      user: JSON.parse(parsedQueryString.user),
+    };
+  } else {
+    return {
+      safe: false,
+    };
+  }
 };
 
 module.exports = validateData;
