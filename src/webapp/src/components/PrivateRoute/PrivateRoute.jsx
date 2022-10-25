@@ -1,13 +1,16 @@
 import {useEffect, useState, createContext} from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
+import Loading from '../Loading/Loading';
 
-export const TelegramContext = createContext();
+const getTelegramContext = () => window.Telegram
+
+export const TelegramContext = createContext(getTelegramContext());
 
 export default function PrivateRoute({ children }) {
-    const telegram = window.Telegram.WebApp;
+    const [Telegram, setTelegram] = useState(getTelegramContext())
     const apiUrl = 'http://localhost:3001/';
-    const { initData } = { ...telegram };
-
+    const { initData } = { ...Telegram.WebApp };
+    
     const [safe, setSafe] = useState(undefined);
 
     useEffect(() => {
@@ -19,13 +22,16 @@ export default function PrivateRoute({ children }) {
                 setSafe(false);
             }
         })
-        .catch(() => setSafe(false));         
-    });
+        .catch(() => setSafe(false));
+
+    }, [initData]);
+
+    Telegram.WebApp.BackButton.show();
 
     if(safe !== undefined) {
         if (safe) {
             return <>
-                <TelegramContext.Provider>
+                <TelegramContext.Provider value={Telegram}>
                     {children}
                     <Outlet />
                 </TelegramContext.Provider>                
@@ -33,5 +39,7 @@ export default function PrivateRoute({ children }) {
         } else {
             return <Navigate to={'/unauthorized'} />
         }   
+    } else {
+        return <Loading />
     }
 }
