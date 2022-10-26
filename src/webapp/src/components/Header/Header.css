@@ -1,12 +1,2 @@
 .header {
 }
-
-.header__title {
-    width: 100%;
-    height: max-content;
-    font-size: 3rem;
-    text-align: center;
-    letter-spacing: 5px;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--tg-theme-link-color-import);
-}

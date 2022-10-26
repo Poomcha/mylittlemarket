@@ -1,5 +1,5 @@
-import {useEffect, useState, createContext} from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import {useEffect, useState, createContext, useContext} from 'react'
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Loading from '../Loading/Loading';
 
 const getTelegramContext = () => window.Telegram
@@ -7,11 +7,16 @@ const getTelegramContext = () => window.Telegram
 export const TelegramContext = createContext(getTelegramContext());
 
 export default function PrivateRoute({ children }) {
-    const [Telegram, setTelegram] = useState(getTelegramContext())
+    const Telegram = useContext(TelegramContext)
+    const [safe, setSafe] = useState(undefined);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const apiUrl = 'http://localhost:3001/';
     const { initData } = { ...Telegram.WebApp };
     
-    const [safe, setSafe] = useState(undefined);
+    
 
     useEffect(() => {
         fetch(`${apiUrl}login`, { headers: { data: `${initData}` } })
@@ -24,10 +29,19 @@ export default function PrivateRoute({ children }) {
         })
         .catch(() => setSafe(false));
 
-    }, [initData]);
+        // App functionnality initialisation.
+        Telegram.WebApp.BackButton.show();
+        Telegram.WebApp.BackButton.onClick(() => {
+            location !== '/' && navigate(-1)
+        })
 
-    Telegram.WebApp.BackButton.show();
+        return () => {
+            Telegram.WebApp.BackButton.offClick();
+        }
 
+    });
+
+    
     if(safe !== undefined) {
         if (safe) {
             return <>

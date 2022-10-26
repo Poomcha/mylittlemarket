@@ -7,6 +7,7 @@
 }
 
 :root {
+    /* Telegram dynamics variables */
     --tg-theme-bg-color-import: var(--tg-theme-bg-color);
     --tg-theme-button-color-import: var(--tg-theme-button-color);
     --tg-theme-button-text-color-import: var(--tg-theme-button-text-color);
@@ -16,6 +17,11 @@
     --tg-theme-text-color-import: var(--tg-theme-text-color);
     --tg-viewport-height-import: var(--tg-viewport-height);
     --tg-viewport-stable-height-import: var(--tg-viewport-stable-height);
+    /* Global variables */
+    --padding: 5px;
+    --margin: calc(var(--padding) * 3);
+    --border-button: 2px solid var(--tg-theme-text-color-import);
+    --border-radius: var(--padding);
 }
 
 body {
