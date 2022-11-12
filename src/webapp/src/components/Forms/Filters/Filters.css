@@ -1,0 +1,26 @@
+.filters {
+    transition: transform 400ms ease;
+}
+
+.filters--toggle {
+    transform: translate3d(0, -33vh, 0);
+}
+
+.filters__form {
+    height: 33vh;
+    overflow: hidden;
+}
+
+
+.filters__form-toggler {}
+
+.filters__form-toggler__angle-ctn {
+    display: inline-block;
+    transition: transform 400ms ease;
+}
+
+.filters__form-toggler__angle-ctn--toggle {
+    transform: rotate(180deg);
+}
+
+

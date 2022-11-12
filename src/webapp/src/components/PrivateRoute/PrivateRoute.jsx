@@ -16,8 +16,6 @@ export default function PrivateRoute({ children }) {
     const apiUrl = 'http://localhost:3001/';
     const { initData } = { ...Telegram.WebApp };
     
-    
-
     useEffect(() => {
         fetch(`${apiUrl}login`, { headers: { data: `${initData}` } })
         .then((res) => {
