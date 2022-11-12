@@ -1,7 +1,7 @@
 .button {
     font-weight: 700;
     padding: var(--padding);
-    background-color: var(--tg-theme-button-color-import);
+    background-color: var(--button-color);
     border: none;
     border-bottom: var(--border-button);
     border-radius: var(--border-radius);

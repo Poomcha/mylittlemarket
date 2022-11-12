@@ -8,26 +8,27 @@
 
 :root {
     /* Telegram dynamics variables */
-    --tg-theme-bg-color-import: var(--tg-theme-bg-color);
-    --tg-theme-button-color-import: var(--tg-theme-button-color);
-    --tg-theme-button-text-color-import: var(--tg-theme-button-text-color);
-    --tg-theme-hint-color-import: var(--tg-theme-hint-color);
-    --tg-theme-link-color-import: var(--tg-theme-link-color);
-    --tg-theme-secondary-bg-color-import: var(--tg-theme-secondary-bg-color);
-    --tg-theme-text-color-import: var(--tg-theme-text-color);
-    --tg-viewport-height-import: var(--tg-viewport-height);
-    --tg-viewport-stable-height-import: var(--tg-viewport-stable-height);
+    --bg-color: var(--tg-theme-bg-color);
+    --button-color: var(--tg-theme-button-color);
+    --button-text-color: var(--tg-theme-button-text-color);
+    --hint-color: var(--tg-theme-hint-color);
+    --link-color: var(--tg-theme-link-color);
+    --secondary-bg-color: var(--tg-theme-secondary-bg-color);
+    --text-color: var(--tg-theme-text-color);
+    --viewport-height: var(--tg-viewport-height);
+    --viewport-stable-height: var(--tg-viewport-stable-height);
     /* Global variables */
     --padding: 5px;
     --margin: calc(var(--padding) * 3);
-    --border-button: 2px solid var(--tg-theme-text-color-import);
+    --border-button: 2px solid var(--text-color);
     --border-radius: var(--padding);
+    --bg-color-gradient: radial-gradient(circle at top right, var(--bg-color) 60%, var(--secondary-bg-color));
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
-    color: var(--tg-theme-text-color-import);
-    background-color: var(--tg-theme-bg-color-import);
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 
 a {
