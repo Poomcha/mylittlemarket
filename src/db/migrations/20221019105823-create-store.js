@@ -8,38 +8,40 @@ module.exports = {
         autoIncrement: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(40),
         allowNull: false,
+        unique: true,
       },
       description: {
-        type: Sequelize.TEXT,
-        allowNull: false,
+        type: Sequelize.STRING(80),
+        allowNull: true,
       },
       tags: {
-        type: Sequelize.TEXT,
-        allowNull: false,
+        type: Sequelize.STRING(80),
+        allowNull: true,
       },
       img: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       location: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.STRING(80),
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Stores');
-  }
+  },
 };

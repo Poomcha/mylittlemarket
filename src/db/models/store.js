@@ -24,15 +24,47 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      name: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      tas: DataTypes.TEXT,
-      img: DataTypes.STRING,
-      location: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING(40),
+        allowNull: false,
+        unique: true,
+        validate: {
+          len: [3, 40],
+        },
+      },
+      description: {
+        type: DataTypes.STRING(80),
+        allowNull: true,
+        validate: {
+          len: [0, 80],
+        },
+      },
+      tags: {
+        type: DataTypes.STRING(80),
+        allowNull: true,
+        validate: {
+          len: [0, 80],
+        },
+      },
+      img: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isUrl: true,
+        },
+      },
+      location: {
+        type: DataTypes.STRING(80),
+        allowNull: true,
+        validate: {
+          len: [0, 80],
+        },
+      },
     },
     {
       sequelize,
       modelName: 'Store',
+      timestamps: true,
     }
   );
   return Store;

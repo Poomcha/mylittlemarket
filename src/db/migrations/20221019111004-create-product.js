@@ -11,30 +11,35 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(40),
         allowNull: false,
       },
       description: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(80),
+        allowNull: true,
       },
       tags: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(80),
+        allowNull: true,
       },
       img: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       deliveryTime: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        allowNull: true,
       },
       deliveryMode: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM('handToHand', 'delivery', 'digital'),
+        allowNull: false,
       },
       price: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
       currency: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM('Euro', 'Dollar'),
         allowNull: false,
       },
       createdAt: {

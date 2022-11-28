@@ -1,8 +1,14 @@
 const db = require('../../db/models/index');
 
-const getProduct = (req, res, next) => {
+const getProductById = (req, res, next) => {
   db.Product.findByPk(req.params.productId)
     .then((product) => res.status(200).json(product))
+    .catch((err) => res.status(404).json(err));
+};
+
+const getProducts = (req, res, next) => {
+  db.Product.find()
+    .then((products) => res.status(200).json(products))
     .catch((err) => res.status(404).json(err));
 };
 
@@ -32,7 +38,8 @@ const deleteProduct = (req, res, next) => {
 };
 
 module.exports = {
-  getProduct,
+  getProductById,
+  getProducts,
   createProduct,
   patchProduct,
   deleteProduct,
